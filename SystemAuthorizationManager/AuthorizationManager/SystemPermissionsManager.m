@@ -54,6 +54,7 @@ static SystemPermissionsManager *systemPermissionsManager = nil;
 - (id)init {
     self = [super init];
     if (self) {
+        //如果不需要定位的话，请删除与定位相关的代码即可。
         [self setup];
     }
     return self;
