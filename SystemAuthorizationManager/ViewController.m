@@ -18,7 +18,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [[SystemPermissionsManager sharedManager] requestAuthorization:KALAssetsLibrary];
+    [[SystemPermissionsManager sharedManager] requestAuthorization:KCLLocationManager];
 }
 
 @end

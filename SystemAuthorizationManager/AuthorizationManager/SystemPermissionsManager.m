@@ -25,6 +25,13 @@ static NSString *const APPNAME = @"";  //填写自己APP NAME
 
 static SystemPermissionsManager *systemPermissionsManager = nil;
 
+@interface SystemPermissionsManager ()<CLLocationManagerDelegate,UIAlertViewDelegate>
+
+@property(nonatomic,strong) CLLocationManager *locationManager;
+
+
+@end
+
 @implementation SystemPermissionsManager
 
 + (instancetype)sharedManager {
@@ -44,6 +51,42 @@ static SystemPermissionsManager *systemPermissionsManager = nil;
     return systemPermissionsManager;
 }
 
+- (id)init {
+    self = [super init];
+    if (self) {
+        [self setup];
+    }
+    return self;
+}
+
+- (void)setup {
+    //定位
+    _locationManager = [[CLLocationManager alloc] init];
+    _locationManager.delegate = self;
+    _locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    _locationManager.distanceFilter = 1.0;
+    if([_locationManager respondsToSelector:@selector(requestAlwaysAuthorization)]) {
+        [_locationManager requestAlwaysAuthorization]; // 永久授权
+    }
+    
+    
+    if ([CLLocationManager locationServicesEnabled]) {
+        if ([[[UIDevice currentDevice] systemVersion] doubleValue] >= 8.0) {
+            [_locationManager requestAlwaysAuthorization];
+        }
+        CLAuthorizationStatus status = CLLocationManager.authorizationStatus;
+        if (status == kCLAuthorizationStatusRestricted || status == kCLAuthorizationStatusDenied) {
+            
+        }else{
+            
+        }
+    }else{
+        
+    }
+    
+}
+
+
 -(id)copyWithZone:(struct _NSZone *)zone{
     return systemPermissionsManager;
 }
@@ -62,6 +105,14 @@ static SystemPermissionsManager *systemPermissionsManager = nil;
                 }else if(authStatus == ALAuthorizationStatusRestricted ){
                     [self executeAlterTips:nil isSupport:NO];
                     return NO;
+                }else if(authStatus == ALAuthorizationStatusNotDetermined ){
+                    [AVCaptureDevice requestAccessForMediaType:AVMediaTypeVideo completionHandler:^(BOOL granted) {
+                        if (granted) {
+                            
+                        }else{
+                            
+                        }
+                    }];
                 }
             }
         }
@@ -112,7 +163,7 @@ static SystemPermissionsManager *systemPermissionsManager = nil;
             }else if(authStatus == kCLAuthorizationStatusRestricted ){
                  [self executeAlterTips:nil isSupport:NO];
                  return NO;
-            }
+            } 
         }
             break;
         case KAVAudioSession:{
@@ -134,6 +185,28 @@ static SystemPermissionsManager *systemPermissionsManager = nil;
             }else if (authStatus == kABAuthorizationStatusRestricted ){
                 [self executeAlterTips:nil isSupport:NO];
                 return NO;
+            }else if(authStatus == kABAuthorizationStatusNotDetermined){
+                __block ABAddressBookRef addressBook = ABAddressBookCreateWithOptions(NULL, NULL);
+                
+                if (addressBook == NULL) {
+                    
+                    [self executeAlterTips:nil isSupport:NO];
+                    return NO;
+                }
+                ABAddressBookRequestAccessWithCompletion(addressBook, ^(bool granted, CFErrorRef error) {
+                    
+                    if (granted) {
+                        
+                    }else{
+                        
+                    }
+                    
+                    if (addressBook) {
+                        CFRelease(addressBook);
+                        addressBook = NULL;
+                    }
+                });
+
             }
         }
             break;
