@@ -48,7 +48,7 @@ static SystemPermissionsManager *systemPermissionsManager = nil;
     return systemPermissionsManager;
 }
 
-- (BOOL )requestAuthorization:(KSystemPermissions)systemPermissions{
+- (BOOL)requestAuthorization:(KSystemPermissions)systemPermissions{
     switch (systemPermissions) {
         case KAVMediaTypeVideo:{
             if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]){
@@ -91,6 +91,10 @@ static SystemPermissionsManager *systemPermissionsManager = nil;
                         NSString *tips = [NSString stringWithFormat:@"请在iPhone的”设置-隐私-相册“选项中，允许%@访问你的手机相册",APPNAME];
                         [self executeAlterTips:tips isSupport:YES];
                         return NO;
+                    }else if (authorizationStatus == PHAuthorizationStatusNotDetermined){
+                        [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
+                            
+                        }];
                     }
                    
                 }
