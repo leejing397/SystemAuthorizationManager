@@ -1,10 +1,13 @@
 //
-//  MikeAlertView.h
-//  mike2.0
+//  BlockAlertView.h
+//  SystemPermissionsManager
 //
-//  Created by 佐毅 on 15/7/7.
-//  Copyright (c) 2015年 上海乐住信息技术有限公司. All rights reserved.
+//  Created by Kenvin on 2016/11/24.
+//  Copyright © 2016年 上海方创金融股份信息服务有限公司. All rights reserved.
 //
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
 
 #import <UIKit/UIKit.h>
 
@@ -19,3 +22,6 @@
 
 
 @end
+
+
+#pragma clang diagnostic pop

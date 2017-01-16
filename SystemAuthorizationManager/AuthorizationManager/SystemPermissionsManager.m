@@ -1,6 +1,6 @@
 //
 //  SystemPermissionsManager.m
-//  BHFangChuang
+//  SystemPermissionsManager
 //
 //  Created by Kenvin on 2016/11/24.
 //  Copyright © 2016年 上海方创金融股份信息服务有限公司. All rights reserved.
@@ -50,7 +50,7 @@ static SystemPermissionsManager *systemPermissionsManager = nil;
 
 - (BOOL )requestAuthorization:(KSystemPermissions)systemPermissions{
     switch (systemPermissions) {
-        case 0:{
+        case KAVMediaTypeVideo:{
             if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]){
                 NSString *mediaType = AVMediaTypeVideo;
                 AVAuthorizationStatus authStatus = [AVCaptureDevice authorizationStatusForMediaType:mediaType];
@@ -66,7 +66,7 @@ static SystemPermissionsManager *systemPermissionsManager = nil;
             }
         }
             break;
-        case 1:{
+        case KALAssetsLibrary:{
             
             if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]) {
                 if ([UIDevice currentDevice].systemVersion.floatValue < 8.0) {
@@ -99,7 +99,7 @@ static SystemPermissionsManager *systemPermissionsManager = nil;
            
         }
             break;
-        case 2:{
+        case KCLLocationManager:{
             CLAuthorizationStatus authStatus = CLLocationManager.authorizationStatus;
             if ( authStatus == kCLAuthorizationStatusDenied) {
                 NSString *tips = [NSString stringWithFormat:@"请在iPhone的”设置-隐私-定位“选项中，允许%@访问你的定位",APPNAME];
@@ -111,7 +111,7 @@ static SystemPermissionsManager *systemPermissionsManager = nil;
             }
         }
             break;
-        case 3:{
+        case KAVAudioSession:{
             if (![self canRecord]) {
                 NSString *tips = [NSString stringWithFormat:@"请在iPhone的”设置-隐私-麦克风“选项中，允许%@访问你的麦克风",APPNAME];
                 [self executeAlterTips:tips isSupport:YES];
@@ -119,7 +119,7 @@ static SystemPermissionsManager *systemPermissionsManager = nil;
             }
         }
             break;
-        case 4:{
+        case KABAddressBook:{
             ABAuthorizationStatus authStatus = ABAddressBookGetAuthorizationStatus();
             NSString *tips = [NSString stringWithFormat:@"请在iPhone的”设置-隐私-联系人“选项中，允许%@访问你的手机通讯录",APPNAME];
 
@@ -144,8 +144,7 @@ static SystemPermissionsManager *systemPermissionsManager = nil;
 - (BOOL)canRecord{
     
     __block BOOL bCanRecord = YES;
-    if ([[UIDevice currentDevice] systemVersion].floatValue > 7.0)
-    {
+    if ([[UIDevice currentDevice] systemVersion].floatValue > 7.0){
         AVAudioSession *audioSession = [AVAudioSession sharedInstance];
         if ([audioSession respondsToSelector:@selector(requestRecordPermission:)]) {
             [audioSession performSelector:@selector(requestRecordPermission:) withObject:^(BOOL granted) {

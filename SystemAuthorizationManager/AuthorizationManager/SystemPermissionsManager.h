@@ -1,6 +1,6 @@
 //
 //  SystemPermissionsManager.h
-//  BHFangChuang
+//  SystemPermissionsManager
 //
 //  Created by Kenvin on 2016/11/24.
 //  Copyright © 2016年 上海方创金融股份信息服务有限公司. All rights reserved.
