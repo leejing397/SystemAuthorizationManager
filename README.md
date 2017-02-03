@@ -41,13 +41,14 @@ AuthorizationStatusNotDetermined      // 用户从未进行过授权等处理，
 
   ```
 
-typedef enum KSystemPermissionsType {
+typedef NS_ENUM(NSInteger, KSystemPermissions) {
+    
     KAVMediaTypeVideo = 0,  // 相机
     KALAssetsLibrary,       //相册
     KCLLocationManager,     //地理位置信息
     KAVAudioSession,        //音频
     KABAddressBook          //手机通讯录
-} KSystemPermissions;
+};
 
 ```
 
@@ -114,7 +115,7 @@ typedef enum KSystemPermissionsType {
 #import <ContactsUI/ContactsUI.h>
 #import "BlockAlertView.h"
 
-static NSString *const APPNAME = @"";  //填写自己APP NAME 
+static NSString *const APPNAME = @"";  //填写自己APP NAME
 
 static SystemPermissionsManager *systemPermissionsManager = nil;
 
@@ -147,6 +148,7 @@ static SystemPermissionsManager *systemPermissionsManager = nil;
 - (id)init {
     self = [super init];
     if (self) {
+        //如果不需要定位的话，请删除与定位相关的代码即可。
         [self setup];
     }
     return self;
@@ -226,12 +228,12 @@ static SystemPermissionsManager *systemPermissionsManager = nil;
                     }
                 }else{
                     
-                   PHAuthorizationStatus  authorizationStatus = [PHPhotoLibrary   authorizationStatus];
+                    PHAuthorizationStatus  authorizationStatus = [PHPhotoLibrary   authorizationStatus];
                     if (authorizationStatus == PHAuthorizationStatusRestricted) {
                         [self executeAlterTips:nil isSupport:NO];
                         return NO;
                     }else if(authorizationStatus == PHAuthorizationStatusDenied){
-                      
+                        
                         NSString *tips = [NSString stringWithFormat:@"请在iPhone的”设置-隐私-相册“选项中，允许%@访问你的手机相册",APPNAME];
                         [self executeAlterTips:tips isSupport:YES];
                         return NO;
@@ -240,11 +242,11 @@ static SystemPermissionsManager *systemPermissionsManager = nil;
                             
                         }];
                     }
-                   
+                    
                 }
-            
+                
             }
-           
+            
         }
             break;
         case KCLLocationManager:{
@@ -252,25 +254,25 @@ static SystemPermissionsManager *systemPermissionsManager = nil;
             if ( authStatus == kCLAuthorizationStatusDenied) {
                 NSString *tips = [NSString stringWithFormat:@"请在iPhone的”设置-隐私-定位“选项中，允许%@访问你的定位",APPNAME];
                 [self executeAlterTips:tips isSupport:YES];
-                 return NO;
+                return NO;
             }else if(authStatus == kCLAuthorizationStatusRestricted ){
-                 [self executeAlterTips:nil isSupport:NO];
-                 return NO;
-            } 
+                [self executeAlterTips:nil isSupport:NO];
+                return NO;
+            }
         }
             break;
         case KAVAudioSession:{
             if (![self canRecord]) {
                 NSString *tips = [NSString stringWithFormat:@"请在iPhone的”设置-隐私-麦克风“选项中，允许%@访问你的麦克风",APPNAME];
                 [self executeAlterTips:tips isSupport:YES];
-                 return NO;
+                return NO;
             }
         }
             break;
         case KABAddressBook:{
             ABAuthorizationStatus authStatus = ABAddressBookGetAuthorizationStatus();
             NSString *tips = [NSString stringWithFormat:@"请在iPhone的”设置-隐私-联系人“选项中，允许%@访问你的手机通讯录",APPNAME];
-
+            
             if ( authStatus ==kABAuthorizationStatusDenied){
                 //无权限
                 [self executeAlterTips:tips isSupport:YES];
@@ -299,7 +301,7 @@ static SystemPermissionsManager *systemPermissionsManager = nil;
                         addressBook = NULL;
                     }
                 });
-
+                
             }
         }
             break;
@@ -358,16 +360,17 @@ static SystemPermissionsManager *systemPermissionsManager = nil;
                                    
                                } confirmButtonWithTitle:@"确定"
                               confrimBlock:^{
-                                
-                               }];
+                                  
+                              }];
         }
-       
+        
     });
 }
 
 @end
 
 #pragma clang diagnostic pop
+
 ```
 
 
