@@ -18,7 +18,7 @@
                cancelButtonWithTitle:(NSString *)cancelTitle
                cancelBlock:(void (^)())cancelblock
                confirmButtonWithTitle:(NSString *)confirmTitle
-               confrimBlock:(void (^)())confirmBlock;
+               confirmBlock:(void (^)())confirmBlock;
 
 @end
 

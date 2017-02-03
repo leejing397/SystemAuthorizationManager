@@ -250,7 +250,7 @@ static SystemPermissionsManager *systemPermissionsManager = nil;
                      cancelButtonWithTitle:@"取消"
                                cancelBlock:^{
                                    
-                               } confirmButtonWithTitle:@"去设置" confrimBlock:^{
+                               } confirmButtonWithTitle:@"去设置" confirmBlock:^{
                                    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]
                                                                       options:@{@"url":@""}
                                                             completionHandler:^(BOOL success) {
@@ -265,7 +265,7 @@ static SystemPermissionsManager *systemPermissionsManager = nil;
                                cancelBlock:^{
                                    
                                } confirmButtonWithTitle:@"确定"
-                              confrimBlock:^{
+                              confirmBlock:^{
                                   
                               }];
         }
