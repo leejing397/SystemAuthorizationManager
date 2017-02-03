@@ -20,7 +20,6 @@
                confirmButtonWithTitle:(NSString *)confirmTitle
                confrimBlock:(void (^)())confirmBlock;
 
-
 @end
 
 

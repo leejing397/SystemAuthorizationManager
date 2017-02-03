@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AE1A9F701E44570500EA3E50 /* SystemPermissionsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AE1A9F6F1E44570500EA3E50 /* SystemPermissionsManager.m */; };
 		AE6676EF1E2CED9600E43016 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AE6676EE1E2CED9600E43016 /* main.m */; };
 		AE6676F21E2CED9600E43016 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AE6676F11E2CED9600E43016 /* AppDelegate.m */; };
 		AE6676F51E2CED9600E43016 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AE6676F41E2CED9600E43016 /* ViewController.m */; };
@@ -14,10 +15,11 @@
 		AE6676FA1E2CED9600E43016 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AE6676F91E2CED9600E43016 /* Assets.xcassets */; };
 		AE6676FD1E2CED9600E43016 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE6676FB1E2CED9600E43016 /* LaunchScreen.storyboard */; };
 		AE6677091E2CEE0500E43016 /* BlockAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = AE6677061E2CEE0500E43016 /* BlockAlertView.m */; };
-		AE66770A1E2CEE0500E43016 /* SystemPermissionsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AE6677081E2CEE0500E43016 /* SystemPermissionsManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		AE1A9F6E1E44570500EA3E50 /* SystemPermissionsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SystemPermissionsManager.h; sourceTree = "<group>"; };
+		AE1A9F6F1E44570500EA3E50 /* SystemPermissionsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SystemPermissionsManager.m; sourceTree = "<group>"; };
 		AE6676EA1E2CED9600E43016 /* SystemAuthorizationManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SystemAuthorizationManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE6676EE1E2CED9600E43016 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		AE6676F01E2CED9600E43016 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -30,8 +32,6 @@
 		AE6676FE1E2CED9600E43016 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AE6677051E2CEE0500E43016 /* BlockAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlockAlertView.h; sourceTree = "<group>"; };
 		AE6677061E2CEE0500E43016 /* BlockAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlockAlertView.m; sourceTree = "<group>"; };
-		AE6677071E2CEE0500E43016 /* SystemPermissionsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SystemPermissionsManager.h; sourceTree = "<group>"; };
-		AE6677081E2CEE0500E43016 /* SystemPermissionsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SystemPermissionsManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,8 +91,8 @@
 			children = (
 				AE6677051E2CEE0500E43016 /* BlockAlertView.h */,
 				AE6677061E2CEE0500E43016 /* BlockAlertView.m */,
-				AE6677071E2CEE0500E43016 /* SystemPermissionsManager.h */,
-				AE6677081E2CEE0500E43016 /* SystemPermissionsManager.m */,
+				AE1A9F6E1E44570500EA3E50 /* SystemPermissionsManager.h */,
+				AE1A9F6F1E44570500EA3E50 /* SystemPermissionsManager.m */,
 			);
 			path = AuthorizationManager;
 			sourceTree = "<group>";
@@ -169,7 +169,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AE66770A1E2CEE0500E43016 /* SystemPermissionsManager.m in Sources */,
+				AE1A9F701E44570500EA3E50 /* SystemPermissionsManager.m in Sources */,
 				AE6676F51E2CED9600E43016 /* ViewController.m in Sources */,
 				AE6677091E2CEE0500E43016 /* BlockAlertView.m in Sources */,
 				AE6676F21E2CED9600E43016 /* AppDelegate.m in Sources */,
@@ -334,6 +334,7 @@
 				AE6677031E2CED9600E43016 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -8,14 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
-typedef enum KSystemPermissionsType {
+typedef NS_ENUM(NSInteger, KSystemPermissions) {
+    
     KAVMediaTypeVideo = 0,  // 相机
     KALAssetsLibrary,       //相册
     KCLLocationManager,     //地理位置信息
     KAVAudioSession,        //音频
     KABAddressBook          //手机通讯录
-} KSystemPermissions;
-
+};
 
 @interface SystemPermissionsManager : NSObject
 
